@@ -1,6 +1,6 @@
 # Chatbot Progressive Web Application
 
-![Chatbot PWA]<img src="https://www.pngitem.com/pimgs/m/500-5006722_voice-recorder-icon-png-png-download-voice-recorder.png" alt="Chatbot PWA Logo" width="100" height="100">
+<img src="https://www.pngitem.com/pimgs/m/500-5006722_voice-recorder-icon-png-png-download-voice-recorder.png" alt="Chatbot PWA Logo" width="100" height="100">
 
 This project is a simple Progressive Web Application (PWA) that includes a chatbot with audio recording functionality. Users can interact with the chatbot, record audio messages, play them back, and download the recorded audio.
 
