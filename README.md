@@ -1,6 +1,6 @@
 # Chatbot Progressive Web Application
 
-![Chatbot PWA](link-to-your-logo-or-image)
+![Chatbot PWA](https://www.pngitem.com/pimgs/m/500-5006722_voice-recorder-icon-png-png-download-voice-recorder.png)
 
 This project is a simple Progressive Web Application (PWA) that includes a chatbot with audio recording functionality. Users can interact with the chatbot, record audio messages, and play them back.
 
@@ -35,19 +35,19 @@ This project is a simple Progressive Web Application (PWA) that includes a chatb
    ```bash
    npm install
 
-Usage
+## Usage
 1. Start the development server:
 
    ```bash
    npm start
 2. Open your browser and visit http://localhost:3000 to interact with the chatbot.
 
-Recording Audio
-Click the "Start Recording" button to begin recording audio.
-Click the "Stop Recording" button to stop the recording manually.
+## Recording Audio
+ - Click the "Start Recording" button to begin recording audio.
+ - Click the "Stop Recording" button to stop the recording manually.
 
-Customization
+## Customization
 Feel free to customize the chatbot responses, styling, and functionality based on your project requirements.
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
