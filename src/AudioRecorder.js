@@ -1,11 +1,25 @@
-// src/AudioRecorder.js
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const AudioRecorder = () => {
   const [recording, setRecording] = useState(false);
+  const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
+
+  useEffect(() => {
+    let timer;
+
+    if (recording) {
+      timer = setInterval(() => {
+        setDuration((prevDuration) => prevDuration + 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [recording]);
 
   const startRecording = async () => {
     try {
@@ -36,6 +50,7 @@ const AudioRecorder = () => {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
       mediaRecorderRef.current.stop();
       setRecording(false);
+      setDuration(0);
     }
   };
 
@@ -43,7 +58,7 @@ const AudioRecorder = () => {
     <div>
       <h2>Audio Recorder</h2>
       <button onClick={startRecording} disabled={recording}>
-        {recording ? 'Recording...' : 'Start Recording'}
+        {recording ? `Recording... ${duration}s` : 'Start Recording'}
       </button>
       <button onClick={stopRecording} disabled={!recording}>
         Stop Recording
