@@ -1,4 +1,3 @@
-// src/Chatbot.js
 import React from 'react';
 import AudioRecorder from './AudioRecorder';
 

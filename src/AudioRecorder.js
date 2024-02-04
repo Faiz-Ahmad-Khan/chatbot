@@ -23,26 +23,40 @@ const AudioRecorder = () => {
 
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorderRef.current = mediaRecorder;
+      if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+        await document.body.addEventListener('click', async () => {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      mediaRecorder.ondataavailable = (e) => {
-        if (e.data.size > 0) {
-          chunksRef.current.push(e.data);
-        }
-      };
+            const mediaRecorder = new MediaRecorder(stream);
+            mediaRecorderRef.current = mediaRecorder;
 
-      mediaRecorder.onstop = () => {
-        const audioBlob = new Blob(chunksRef.current, { type: 'audio/wav' });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        audioRef.current.src = audioUrl;
-      };
+            mediaRecorder.ondataavailable = (e) => {
+              if (e.data.size > 0) {
+                chunksRef.current.push(e.data);
+              }
+            };
 
-      mediaRecorder.start();
-      setRecording(true);
+            mediaRecorder.onstop = () => {
+              const audioBlob = new Blob(chunksRef.current, { type: 'audio/wav' });
+              const audioUrl = URL.createObjectURL(audioBlob);
+              audioRef.current.src = audioUrl;
+            };
+
+            mediaRecorder.start();
+            setRecording(true);
+          } catch (error) {
+            console.error('Error accessing microphone:', error);
+            alert('Error accessing microphone. Please make sure you have granted the necessary permissions.');
+          }
+        }, { once: true });
+      } else {
+        console.error('getUserMedia is not supported in this browser.');
+        alert('Audio recording is not supported in this browser.');
+      }
     } catch (error) {
-      console.error('Error accessing microphone:', error);
+      console.error('Error checking microphone support:', error);
+      alert('An error occurred while checking microphone support. Please try again.');
     }
   };
 
